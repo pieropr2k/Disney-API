@@ -97,7 +97,9 @@ serieRouter.post('/:id/add_character', async (request, response) => {
         const theSerie = await Serie.findByPk(id);
         const newCharacter = await Character.create({ image, name, age, weight, history });
         theSerie.addCharacter(newCharacter);
-        response.json(newCharacter);
+        const message = `Added the character ${newCharacter.name} to ${theSerie.title} serie`;
+        response.json({ message });
+        //response.json(newCharacter);
     } catch (error) {
         response.status(500).json({ error: error.message });
     }
@@ -112,7 +114,9 @@ serieRouter.put('/:id/add_character/:characterid_to_add', async (request, respon
             response.status(400).json({ "message": "Character Not Found" });
         }
         theSerie.addCharacter(characterToAdd);
-        response.json(characterToAdd);
+        const message = `Added character ${characterToAdd.name} to ${theSerie.title} serie`;
+        return response.json({ message });
+        //response.json(characterToAdd);
     } catch (error) {
         response.status(500).json({ error: error.message });
     }
@@ -126,7 +130,7 @@ serieRouter.put('/:id/delete_character/:characterid_to_delete', async (request, 
         if (serieCharacters.length === 0) {
             return response.status(400).json({ message: `The serie ${theSerie.title} doesn't have a character with the id ${characterid_to_delete}` });
         }
-        const message = `Deleted the character ${serieCharacters[0].name} from ${theSerie.title} serie`
+        const message = `Deleted the character ${serieCharacters[0].name} from ${theSerie.title} serie`;
         theSerie.removeCharacter(serieCharacters[0]);
         return response.json({ message });
     } catch (error) {
