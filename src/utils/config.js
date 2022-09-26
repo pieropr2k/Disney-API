@@ -8,4 +8,4 @@ const DB_PASSWORD = process.env.DB_PASSWORD || 'password'
 const DB_NAME = process.env.DB_NAME || 'disney_db'
 const DB_PORT = process.env.DB_PORT || 5432
 
-module.exports = { DB_HOST, DB_USER, DB_PASSWORD, DB_NAME, DB_PORT, PORT};
+module.exports = { DB_HOST, DB_USER, DB_PASSWORD, DB_NAME, DB_PORT, PORT };
